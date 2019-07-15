@@ -1,11 +1,19 @@
+const express = require('express');
 const WebSocket = require('ws');
 
-const ws = new WebSocket('ws://demos.kaazing.com/echo');
+const PORT = process.env.PORT || 3000;
 
-ws.on('open', function open() {
+const server = express()
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+const WebSocket = require('ws');
+
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+
   ws.send('something');
-});
-
-ws.on('message', function incoming(data) {
-  console.log(data);
 });
