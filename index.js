@@ -43,9 +43,8 @@ server.ws('/', function(ws, req) {
   console.log('socket', req.testing);
 });
 
-
+var wsInstance = expressWS.wsInstance.app;
 function myfunction(resp) {
-    var wsInstance = expressWS.wsInstance.app;
     wsInstance.getWss().clients.forEach((client) => {
         client.send(JSON.stringify(qtext));
         // console.log(client.send('1234'));
