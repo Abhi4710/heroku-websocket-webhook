@@ -65,7 +65,7 @@ server.ws('/', function(ws, req) {
   ws.on('close', function(msg) {
     console.log('client disconnected');
   });
-  console.log('socket', req.testing);
+//   console.log('socket', req.testing);
 });
 // server.use(wss)
 
