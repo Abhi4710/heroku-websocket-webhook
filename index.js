@@ -44,18 +44,18 @@ server.ws('/', function(ws, req) {
 });
 
 
-function myfunction(resp) {
-    wss.clients.forEach((client) => {
-        client.send(JSON.stringify(resp));
-        // console.log(client.send('1234'));
-    });
-};
+// function myfunction(resp) {
+//     wss.clients.forEach((client) => {
+//         client.send(JSON.stringify(resp));
+//         // console.log(client.send('1234'));
+//     });
+// };
 
 server.post("/echo", function (req, res) {
     console.log('echo');
     console.log(req.body.queryResult);
     resp = req.body.queryResult;
-    myfunction(resp);
+//     myfunction(resp);
     // console.log('Query:' + Object.entries(req.body.queryResult.queryText));
     // console.log('Param ' + Object.entries(req.body.queryResult.parameters));
     var n = req.body.queryResult.queryText;
