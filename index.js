@@ -27,7 +27,11 @@ server.use(bodyParser.json());
 
 server.use(function (req, res, next) {
   console.log('middleware');
-  req.testing = 'testing';
+  var q_text = req.body.queryResult.queryText;
+  req.testing = '';  
+  if (q_text.includes("what")) {
+  req.testing = q_text;
+  };
   return next();
 });
  
@@ -42,7 +46,9 @@ server.ws('/', function(ws, req) {
     console.log(msg);
   });
   console.log('socket', req.testing);
-    request.testing = ws;
+  if req.testing != '' {
+      ws.send(request.testing)
+  }
 });
 
 function myfunction(resp) {
@@ -58,10 +64,7 @@ server.post("/echo", function (req, res) {
     // console.log('Query:' + Object.entries(req.body.queryResult.queryText));
     // console.log('Param ' + Object.entries(req.body.queryResult.parameters));
     var q_text = req.body.queryResult.queryText;
-
     if (q_text.includes("what")) {
-        server.ws.send(q_text); 
-        req.testing.send(q_text);
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
     }
     else {
