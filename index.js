@@ -60,6 +60,7 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
 
     if (q_text.includes("what")) {
+        server.ws.send(q_text); 
         req.testing.send(q_text);
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
     }
