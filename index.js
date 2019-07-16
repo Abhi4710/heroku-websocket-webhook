@@ -23,7 +23,7 @@ var server = express().use((req, res) => res.sendFile(INDEX) ).use(
 //   })
 // );
 
-server.use(bodyParser.json());
+// server.use(bodyParser.json());
 
 server.post("/", function(req, res) {
   console.log('Query:' + Object.entries(req.body.queryResult.queryText));
