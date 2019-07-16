@@ -11,6 +11,8 @@ const INDEX = path.join(__dirname, 'index.html');
 
 const PORT = process.env.PORT || 3000;
 
+var server = express();
+
 // var server = express().use((req, res) => res.sendFile(INDEX) );
 
 const wss = new SocketServer({port: 7654});
