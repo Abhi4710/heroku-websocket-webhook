@@ -4,10 +4,11 @@ const express = require('express');
 // const express1 = require('express');
 // const PORT_WS = process.env.PORT_WS || 3001;
 //const PORT = 3000;
-const PORT_WH = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4001;
 // const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT_WS, () => console.log(`websocket Listening on ${PORT_WS}`));
 const server = express();
 const bodyParser = require("body-parser");
+var expressWs = require('express-ws')(server);
 const SocketServer = require('ws').Server;
 var resp = '';
 const path = require('path');
@@ -21,6 +22,26 @@ server.use(
 );
 
 server.use(bodyParser.json());
+
+
+server.use(function (req, res, next) {
+  console.log('middleware');
+  req.testing = 'testing';
+  return next();
+});
+ 
+server.get('/', function(req, res, next){
+  console.log('get route', req.testing);
+  res.end();
+});
+ 
+server.ws('/', function(ws, req) {
+  ws.on('connect', () => console.log('client connected'));
+  ws.on('message', function(msg) {
+    console.log(msg);
+  });
+  console.log('socket', req.testing);
+});
 
 
 function myfunction(resp) {
@@ -75,13 +96,13 @@ server.post("/echo", function (req, res) {
         source: "webhook-echo-sample"
     });
 });
-server.use((req, res) => res.sendFile(INDEX)).listen(PORT_WH, () => console.log(`webhook Listening on ${PORT_WH}`))
-const wss = new SocketServer({ server })
+server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`webhook Listening on ${PORT}`))
+// const wss = new SocketServer({ server })
 
-wss.on('connection', function connection(ws) {
-    console.log('Client connected');
-    ws.on('message', function incoming(message) {
-        console.log('received: %s', message)
-    });
-    ws.on('close', () => console.log('Client disconnected'));
-});
+// wss.on('connection', function connection(ws) {
+//     console.log('Client connected');
+//     ws.on('message', function incoming(message) {
+//         console.log('received: %s', message)
+//     });
+//     ws.on('close', () => console.log('Client disconnected'));
+// });
