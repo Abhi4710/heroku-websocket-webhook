@@ -4,7 +4,7 @@ const express = require('express');
 // const express1 = require('express');
 // const PORT_WS = process.env.PORT_WS || 3001;
 //const PORT = 3000;
-const PORT_WH = process.env.PORT_WH || 4001;
+const PORT_WH = process.env.PORT || 4001;
 // const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT_WS, () => console.log(`websocket Listening on ${PORT_WS}`));
 const server = express();
 const bodyParser = require("body-parser");
