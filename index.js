@@ -27,13 +27,13 @@ server.use(bodyParser.json());
 
 server.use(function (req, res, next) {
   console.log('middleware');
-    if (request.body.queryResult){
-  var q_text = req.body.queryResult.queryText;
-  req.testing = '';  
-  if (q_text.includes("what")) {
-  req.testing = q_text;
-  };
-    };
+//     if (request.body.queryResult){
+//   var q_text = req.body.queryResult.queryText;
+//   req.testing = '';  
+//   if (q_text.includes("what")) {
+//   req.testing = q_text;
+//   };
+//     };
   return next();
 });
  
