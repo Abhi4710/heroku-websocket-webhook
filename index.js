@@ -3,16 +3,16 @@
 // const res_dict = {"hello": "Hi", "name":"Abhi", "server":"websocket", "hi": "hello", "version": "1.0",  '{"state":"ON"}': {"query": "cmd", "state": "on"}, '{"state":"OFF"}': {"query": "cmd", "state": "off"}}
 
 const express = require('express');
-// var ws = require('./ws');
+var server = express();
 const bodyParser = require("body-parser");
 const SocketServer = require('ws').Server;
+var expressWs = require('express-ws')(server);
 const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
 
 const PORT = process.env.PORT || 3000;
 
-var server = express();
 
 var server = express().use((req, res) => res.sendFile(INDEX) );
 
@@ -23,26 +23,26 @@ var server = express().use((req, res) => res.sendFile(INDEX) );
 //   console.log('socket', req.testing);
 // });
 
-const wss = new SocketServer({server}).listen(PORT)
-console.log(wss);
-wss.on('connection', function connection(ws) {
-  console.log('Client connected');
-//   ws.on('message', function incoming(message) {
-//     console.log('received: %s', message);
-//     let res = res_dict[message]
-//     // ws.send(res);
-//     if (message == '{"state":"ON"}'){
-//       res = res_dict['{"state":"ON"}']
-//     }
-//     if (message == '{"state":"OFF"}'){
-//       res = res_dict['{"state":"OFF"}']
-//     }
-//     if (message != ''){
-//     myfunction(res)
-//     };
-//   });
-  ws.on('close', () => console.log('Client disconnected'));
-});
+// const wss = new SocketServer({server})
+// console.log(wss);
+// wss.on('connection', function connection(ws) {
+//   console.log('Client connected');
+// //   ws.on('message', function incoming(message) {
+// //     console.log('received: %s', message);
+// //     let res = res_dict[message]
+// //     // ws.send(res);
+// //     if (message == '{"state":"ON"}'){
+// //       res = res_dict['{"state":"ON"}']
+// //     }
+// //     if (message == '{"state":"OFF"}'){
+// //       res = res_dict['{"state":"OFF"}']
+// //     }
+// //     if (message != ''){
+// //     myfunction(res)
+// //     };
+// //   });
+//   ws.on('close', () => console.log('Client disconnected'));
+// });
 server.use(
   bodyParser.urlencoded({
     extended: true
@@ -54,6 +54,19 @@ server.use(
     extended: true
   })
 );
+
+server.ws('/', function(ws, req) {
+  ws.on('connection', function(msg) {
+    console.log('connected');
+  });
+  ws.on('message', function(msg) {
+    console.log(msg);
+  });
+  ws.on('close', function(msg) {
+    console.log('client disconnected');
+  });
+  console.log('socket', req.testing);
+});
 // server.use(wss)
 
 // server.use(bodyParser.json());
