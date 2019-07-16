@@ -32,6 +32,7 @@ wss.on('connection', function connection(ws) {
 });
 
 app.post("/echo", function(req, res) {
+    console.log('echo');
     console.log('Query:' + Object.entries(req.body.queryResult.queryText));
     console.log('Param ' + Object.entries(req.body.queryResult.parameters));
     var n = req.body.queryResult.queryText;
