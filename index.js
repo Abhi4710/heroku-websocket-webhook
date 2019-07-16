@@ -56,18 +56,18 @@ server.use(
   })
 );
 
-server.ws('/', function(ws, req) {
-  ws.on('connection', function(msg) {
-    console.log('connected');
-  });
-  ws.on('message', function(msg) {
-    console.log(msg);
-  });
-  ws.on('close', function(msg) {
-    console.log('client disconnected');
-  });
-//   console.log('socket', req.testing);
-});
+// server.ws('/', function(ws, req) {
+//   ws.on('connection', function(msg) {
+//     console.log('connected');
+//   });
+//   ws.on('message', function(msg) {
+//     console.log(msg);
+//   });
+//   ws.on('close', function(msg) {
+//     console.log('client disconnected');
+//   });
+// //   console.log('socket', req.testing);
+// });
 // server.use(wss)
 
 // server.use(bodyParser.json());
@@ -114,8 +114,9 @@ server.post("/echo", function(req, res) {
     source: "webhook-echo-sample"
   });
 });
-
-server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => connect(); console.log(`Listening on ${ PORT }`);
+connect();
+server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`);
+console.log('server started');
 // server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 // const wss = new SocketServer({ server });
