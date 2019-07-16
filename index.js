@@ -4,9 +4,9 @@ const express = require('express');
 // const express1 = require('express');
 const PORT_WS = process.env.PORT_WS || 3001;
 //const PORT = 3000;
-const PORT_WH = process.env.PORT_WH || 4001;
-const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT_WS, () => console.log(`websocket Listening on ${PORT_WS}`));
-const app = express();
+// const PORT_WH = process.env.PORT_WH || 4001;
+// const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT_WS, () => console.log(`websocket Listening on ${PORT_WS}`));
+const server = express();
 const bodyParser = require("body-parser");
 const SocketServer = require('ws').Server;
 var resp = '';
@@ -14,24 +14,14 @@ const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
 
-app.use(
+server.use(
     bodyParser.urlencoded({
         extended: true
     })
 );
 
-app.use(bodyParser.json());
+server.use(bodyParser.json());
 
-
-const wss = new SocketServer({ server })
-
-wss.on('connection', function connection(ws) {
-    console.log('Client connected');
-    ws.on('message', function incoming(message) {
-        console.log('received: %s', message)
-    });
-    ws.on('close', () => console.log('Client disconnected'));
-});
 
 function myfunction(resp) {
     wss.clients.forEach((client) => {
@@ -40,7 +30,7 @@ function myfunction(resp) {
     });
 };
 
-app.post("/echo", function (req, res) {
+server.post("/echo", function (req, res) {
     console.log('echo');
     console.log(req.body.queryResult);
     resp = req.body.queryResult;
@@ -85,4 +75,13 @@ app.post("/echo", function (req, res) {
         source: "webhook-echo-sample"
     });
 });
-app.listen(PORT_WH, () => console.log(`webhook Listening on ${PORT_WH}`))
+server.use((req, res) => res.sendFile(INDEX)).listen(PORT_WH, () => console.log(`webhook Listening on ${PORT_WH}`))
+const wss = new SocketServer({ server })
+
+wss.on('connection', function connection(ws) {
+    console.log('Client connected');
+    ws.on('message', function incoming(message) {
+        console.log('received: %s', message)
+    });
+    ws.on('close', () => console.log('Client disconnected'));
+});
