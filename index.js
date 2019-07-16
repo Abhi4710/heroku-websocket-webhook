@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4001;
 // const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT_WS, () => console.log(`websocket Listening on ${PORT_WS}`));
 const server = express();
 const bodyParser = require("body-parser");
-var expressWs = require('express-ws')(server);
+const expressWs = require('express-ws')(server);
 // const SocketServer = require('ws').Server;
 var resp = '';
 const path = require('path');
@@ -45,7 +45,8 @@ server.ws('/', function(ws, req) {
 
 
 function myfunction(resp) {
-    server.wsInstance.getWss().clients.forEach((client) => {
+    var wsInstance = expressWS.wsInstance.app;
+    wsInstance.getWss().clients.forEach((client) => {
         client.send(JSON.stringify(qtext));
         // console.log(client.send('1234'));
     });
