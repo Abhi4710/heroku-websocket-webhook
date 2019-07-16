@@ -115,7 +115,7 @@ server.post("/echo", function(req, res) {
   });
 });
 connect();
-server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`);
+server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));
 console.log('server started');
 // server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
