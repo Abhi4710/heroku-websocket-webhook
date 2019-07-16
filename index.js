@@ -1,13 +1,10 @@
 'use strict';
 
 const express = require('express');
-// const express1 = require('express');
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 const PORT_WH = 4000;
-const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`Websocket Listening on ${PORT}`));
 const app = express();
-const SocketServer = require('ws').Server;
 const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
@@ -19,18 +16,6 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
-
-const wss = new SocketServer({ server })
-
-wss.on('connection', function connection(ws) {
-    console.log('Client connected');
-    ws.on('message', function incoming(message) {
-        console.log('received: %s', message);
-        ws.send('ok ' + message);
-    });
-    ws.on('close', () => console.log('Client disconnected'));
-});
 
 app.post("/", function(req, res) {
     console.log('echo');
