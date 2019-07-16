@@ -26,7 +26,8 @@ const wss = new SocketServer({ server })
 wss.on('connection', function connection(ws) {
     console.log('Client connected');
     ws.on('message', function incoming(message) {
-        console.log('received: %s', message)
+        console.log('received: %s', message);
+        ws.send('ok ' + message);
     });
     ws.on('close', () => console.log('Client disconnected'));
 });
