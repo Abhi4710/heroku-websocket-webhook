@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 3000;
 // });
 var connect = function(){
   const wss = new SocketServer({server})
-  console.log(wss);
+//   console.log(wss);
   wss.on('connection', function connection(ws) {
     console.log('Client connected');
 //   ws.on('message', function incoming(message) {
@@ -114,9 +114,9 @@ server.post("/echo", function(req, res) {
     source: "webhook-echo-sample"
   });
 });
-connect();
-server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));
-console.log('server started');
+// connect();
+server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => connect(); console.log(`Listening on ${ PORT }`));
+// console.log('server started');
 // server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 // const wss = new SocketServer({ server });
