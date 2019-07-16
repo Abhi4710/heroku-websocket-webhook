@@ -46,7 +46,7 @@ server.ws('/', function(ws, req) {
     console.log(msg);
   });
   console.log('socket', req.testing);
-  if req.testing != '' {
+  if (req.testing.includes("what")){
       ws.send(request.testing)
   }
 });
