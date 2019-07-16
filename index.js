@@ -15,7 +15,7 @@ var server = express();
 
 // var server = express().use((req, res) => res.sendFile(INDEX) );
 
-const wss = new SocketServer({noserver: true})
+const wss = new SocketServer({noServer: true})
 console.log(wss);
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
