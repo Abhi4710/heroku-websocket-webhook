@@ -11,11 +11,12 @@ const INDEX = path.join(__dirname, 'index.html');
 
 const PORT = process.env.PORT || 3000;
 
-var server = express().use((req, res) => res.sendFile(INDEX) ).use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-).use(bodyParser.json());
+var server = express().use((req, res) => res.sendFile(INDEX) )
+// .use(
+//   bodyParser.urlencoded({
+//     extended: true
+//   })
+// ).use(bodyParser.json());
 
 // server.use(
 //   bodyParser.urlencoded({
