@@ -26,7 +26,7 @@ var server = express().use((req, res) => res.sendFile(INDEX) )
 
 // server.use(bodyParser.json());
 
-server.post("/", function(req, res) {
+server.post("/echo", function(req, res) {
   console.log('Query:' + Object.entries(req.body.queryResult.queryText));
   console.log('Param ' + Object.entries(req.body.queryResult.parameters));
   var n = req.body.queryResult.queryText;
