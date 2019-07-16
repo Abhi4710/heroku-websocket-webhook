@@ -23,7 +23,7 @@ server.post("/", function(req, res) {
   console.log('Param ' + Object.entries(req.body.queryResult.parameters));
   var n = req.body.queryResult.queryText;
   
-  if (n.includes("what") or n.includes('What')) {
+  if (n.includes("what")) {
 //     res = {"query": "?"}
 //     myfunction(res);
     var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;}
