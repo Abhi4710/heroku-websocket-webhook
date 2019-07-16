@@ -15,7 +15,7 @@ var server = express().use((req, res) => res.sendFile(INDEX) ).use(
   bodyParser.urlencoded({
     extended: true
   })
-).use(bodyParser.json()).listen(PORT, () => console.log(`Listening on ${ PORT }`));
+).use(bodyParser.json());
 
 // server.use(
 //   bodyParser.urlencoded({
@@ -69,6 +69,7 @@ server.post("/", function(req, res) {
 });
 
 // server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
 
