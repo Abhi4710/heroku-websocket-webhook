@@ -14,6 +14,7 @@ var resp = '';
 const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
+console.log(server);
 
 server.use(
     bodyParser.urlencoded({
@@ -43,7 +44,7 @@ server.ws('/', function(ws, req) {
   console.log('socket', req.testing);
 });
 
-var wsInstance = expressWs.options.wsInstance.server;
+var wsInstance = sever.wsInsance.app;
 function myfunction(resp) {
     wsInstance.getWss().clients.forEach((client) => {
         client.send(JSON.stringify(qtext));
