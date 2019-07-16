@@ -45,7 +45,7 @@ server.ws('/', function(ws, req) {
 
 
 function myfunction(resp) {
-    expressWs.wsInstance.getWss().clients.forEach((client) => {
+    server.wsInstance.getWss().clients.forEach((client) => {
         client.send(JSON.stringify(qtext));
         // console.log(client.send('1234'));
     });
