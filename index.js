@@ -27,7 +27,7 @@ server.use(bodyParser.json());
 server.use(function (req, res, next) {
   console.log('middleware');
   req.testing = 'testing';
-  if ('queryResult' in Objects.keys(requeest.body) {
+  if ('queryResult' in Objects.keys(req.body)) {
       request.testing = 'success testing';
   };
   return next();
