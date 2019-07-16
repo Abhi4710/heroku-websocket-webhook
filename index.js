@@ -15,7 +15,7 @@ var server = express();
 
 // var server = express().use((req, res) => res.sendFile(INDEX) );
 
-const wss = new SocketServer({noserver: true, host: 'wss://esp-gas.herokuapp.com'})
+const wss = new SocketServer({host: 'wss://esp-gas.herokuapp.com'})
 console.log(wss);
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
