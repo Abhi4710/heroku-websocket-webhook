@@ -115,7 +115,7 @@ server.post("/echo", function(req, res) {
   });
 });
 
-server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`, connect());
+server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => connect(); console.log(`Listening on ${ PORT }`);
 // server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 // const wss = new SocketServer({ server });
