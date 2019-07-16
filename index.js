@@ -27,8 +27,8 @@ var connect = function(){
 //   console.log(wss);
   wss.on('connection', function connection(ws) {
     console.log('Client connected');
-//   ws.on('message', function incoming(message) {
-//     console.log('received: %s', message);
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message)});
 //     let res = res_dict[message]
 //     // ws.send(res);
 //     if (message == '{"state":"ON"}'){
