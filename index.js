@@ -1,6 +1,6 @@
 'use strict';
 
-const res_dict = {"hello": "Hi", "name":"Abhi", "server":"websocket", "hi": "hello", "version": "1.0",  '{"state":"ON"}': {"query": "cmd", "state": "on"}, '{"state":"OFF"}': {"query": "cmd", "state": "off"}}
+// const res_dict = {"hello": "Hi", "name":"Abhi", "server":"websocket", "hi": "hello", "version": "1.0",  '{"state":"ON"}': {"query": "cmd", "state": "on"}, '{"state":"OFF"}': {"query": "cmd", "state": "off"}}
 
 const express = require('express');
 const bodyParser = require("body-parser");
@@ -13,13 +13,13 @@ const server = express();
 
 const PORT = process.env.PORT || 3000;
 
-server.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
+// server.use(
+//   bodyParser.urlencoded({
+//     extended: true
+//   })
+// );
 
-server.use(bodyParser.json());
+// server.use(bodyParser.json());
 
 // server.post("/", function(req, res) {
 //   console.log('Query:' + Object.entries(req.body.queryResult.queryText));
