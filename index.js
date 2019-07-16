@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 var server = express().use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));;
 
-const wss = new SocketServer({server});
+const wss = new SocketServer({port: 7654});
 console.log(wss);
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
