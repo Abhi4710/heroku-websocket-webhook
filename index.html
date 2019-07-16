@@ -10,10 +10,10 @@
     <h3><p id="serverRes"></p></h3>
   </div>
     <script>
-      var HOST = location.origin.replace(/^http/, 'ws')
+//       var HOST = location.origin.replace(/^http/, 'ws')
       console.log(HOST)
-      var ws = new WebSocket(HOST);
-//       var ws = new WebSocket('ws://esp-gas.herokuapp.com:3000');
+//       var ws = new WebSocket(HOST);
+      var ws = new WebSocket('wss://esp-gas.herokuapp.com:4000');
       var el = document.getElementById('serverRes');
 
       function myFunction() {
