@@ -3,6 +3,7 @@
 const res_dict = {"hello": "Hi", "name":"Abhi", "server":"websocket", "hi": "hello", "version": "1.0",  '{"state":"ON"}': {"query": "cmd", "state": "on"}, '{"state":"OFF"}': {"query": "cmd", "state": "off"}}
 
 const express = require('express');
+const bodyParser = require("body-parser");
 const SocketServer = require('ws').Server;
 const path = require('path');
 
