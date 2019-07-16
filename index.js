@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const SocketServer = require('ws').Server;
 const path = require('path');
 
+const INDEX = path.join(__dirname, 'index.html');
+
 const server = express();
 
 const PORT = process.env.PORT || 3000;
@@ -62,7 +64,7 @@ server.post("/", function(req, res) {
   });
 });
 
-server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
 
