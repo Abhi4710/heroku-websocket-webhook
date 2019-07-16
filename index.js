@@ -9,7 +9,9 @@ const INDEX = path.join(__dirname, 'index.html');
 
 const PORT = process.env.PORT || 3000;
 
-const wss = new SocketServer({ ws_server })
+ws_server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+const wss = new SocketServer({ws_server})
 
 wss.on('connection', function connection(ws) {
     console.log('Client connected');
@@ -18,5 +20,3 @@ wss.on('connection', function connection(ws) {
     });
     ws.on('close', () => console.log('Client disconnected'));
 });
-
-ws_server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`Listening on ${PORT}`));
