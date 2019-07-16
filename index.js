@@ -2,8 +2,8 @@
 
 const express = require('express');
 // const express1 = require('express');
-// const PORT = process.env.PORT || 3000;
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+// const PORT = 3000;
 const PORT_WH = 4000;
 const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`websocket Listening on ${PORT}`));
 const app = express();
