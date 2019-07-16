@@ -15,7 +15,14 @@ var server = express();
 
 // var server = express().use((req, res) => res.sendFile(INDEX) );
 
-const wss = new SocketServer({noServer: true})
+app.ws('/', function(ws, req) {
+  ws.on('message', function(msg) {
+    console.log(msg);
+  });
+  console.log('socket', req.testing);
+});
+
+const wss = new SocketServer({server})
 console.log(wss);
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
@@ -35,17 +42,18 @@ wss.on('connection', function connection(ws) {
 //   });
   ws.on('close', () => console.log('Client disconnected'));
 });
-// .use(
-//   bodyParser.urlencoded({
-//     extended: true
-//   })
-// ).use(bodyParser.json());
+server.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+).use(bodyParser.json());
 
-// server.use(
-//   bodyParser.urlencoded({
-//     extended: true
-//   })
-// );
+server.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+server.use(wss)
 
 // server.use(bodyParser.json());
 
