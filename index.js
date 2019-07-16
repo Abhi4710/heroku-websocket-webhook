@@ -28,8 +28,10 @@ server.use(function (req, res, next) {
   console.log('middleware');
   req.testing = 'testing';
   if ('queryResult' in Objects.keys(req.body)) {
+      console.log('if condition query_t')
       request.testing = 'success testing';
   };
+    console.log('next function');
   return next();
 });
  
