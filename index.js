@@ -40,6 +40,7 @@ server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));
   ws.on('message', function(msg) {
     console.log(msg);
+    resp = msg;
   });
   setInterval(function(){ ws.send('what'); }, 3000);
   console.log('socket', req.testing);
@@ -60,6 +61,9 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
+        if (resp != '') {
+            var speech = resp;
+        };
     }
     else {
         var speech =
