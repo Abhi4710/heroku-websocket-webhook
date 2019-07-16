@@ -11,7 +11,7 @@ const INDEX = path.join(__dirname, 'index.html');
 
 const PORT = process.env.PORT || 3000;
 
-var server = express().use((req, res) => res.sendFile(INDEX) )
+var server = express().use((req, res) => res.sendFile(INDEX) );
 // .use(
 //   bodyParser.urlencoded({
 //     extended: true
@@ -73,7 +73,7 @@ server.post("/echo", function(req, res) {
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
-
+console.log(wss);
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
 //   ws.on('message', function incoming(message) {
