@@ -11,13 +11,17 @@ const INDEX = path.join(__dirname, 'index.html');
 
 const PORT = process.env.PORT || 3000;
 
-var server = express().use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-server.use(
+var server = express().use((req, res) => res.sendFile(INDEX) ).use(
   bodyParser.urlencoded({
     extended: true
   })
-);
+).use(bodyParser.json()).listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+// server.use(
+//   bodyParser.urlencoded({
+//     extended: true
+//   })
+// );
 
 server.use(bodyParser.json());
 
