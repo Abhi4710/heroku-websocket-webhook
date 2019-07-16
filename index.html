@@ -11,7 +11,9 @@
   </div>
     <script>
       var HOST = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(HOST);
+      console.log(HOST)
+//       var ws = new WebSocket(HOST);
+      var ws = new WebSocket('ws://esp-gas.herokuapp.com');
       var el = document.getElementById('serverRes');
 
       function myFunction() {
