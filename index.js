@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 4001;
 const server = express();
 const bodyParser = require("body-parser");
 var expressWs = require('express-ws')(server);
-const SocketServer = require('ws').Server;
+// const SocketServer = require('ws').Server;
 var resp = '';
 const path = require('path');
 
@@ -44,23 +44,22 @@ server.ws('/', function(ws, req) {
 });
 
 
-// function myfunction(resp) {
-//     wss.clients.forEach((client) => {
-//         client.send(JSON.stringify(resp));
-//         // console.log(client.send('1234'));
-//     });
-// };
+function myfunction(resp) {
+    wsInstance.getWss().clients.forEach((client) => {
+        client.send(JSON.stringify(qtext));
+        // console.log(client.send('1234'));
+    });
+};
 
 server.post("/echo", function (req, res) {
     console.log('echo');
     console.log(req.body.queryResult);
-    resp = req.body.queryResult;
-//     myfunction(resp);
     // console.log('Query:' + Object.entries(req.body.queryResult.queryText));
     // console.log('Param ' + Object.entries(req.body.queryResult.parameters));
-    var n = req.body.queryResult.queryText;
+    var q_text = req.body.queryResult.queryText;
 
-    if (n.includes("what")) {
+    if (q_text.includes("what")) {
+        myfunction(q_text);
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
     }
     else {
