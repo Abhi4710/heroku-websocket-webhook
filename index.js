@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 app.post("/", function(req, res) {
     console.log('echo');
-    console.log('Query:' + Object.entries(req.body.queryResult.queryText));
+    console.log('Query:' + Object.entries(req.body.queryResult));
     console.log('Param ' + Object.entries(req.body.queryResult.parameters));
     var n = req.body.queryResult.queryText;
     
