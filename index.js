@@ -27,7 +27,7 @@ server.use(bodyParser.json());
 
 server.use(function (req, res, next) {
   console.log('middleware');
-  req.testing = {};
+  req.testing = ();
   return next();
 });
  
