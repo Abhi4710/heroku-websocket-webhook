@@ -31,7 +31,7 @@ server.use(function (req, res, next) {
 //   var q_text = req.body.queryResult.queryText;
 //   req.testing = '';  
 //   if (q_text.includes("what")) {
-//   req.testing = q_text;
+  req.testing = q_text;
 //   };
 //     };
   return next();
