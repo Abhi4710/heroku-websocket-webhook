@@ -3,10 +3,10 @@
 // const res_dict = {"hello": "Hi", "name":"Abhi", "server":"websocket", "hi": "hello", "version": "1.0",  '{"state":"ON"}': {"query": "cmd", "state": "on"}, '{"state":"OFF"}': {"query": "cmd", "state": "off"}}
 
 const express = require('express');
-var server = express();
+const server = express();
 const bodyParser = require("body-parser");
 const SocketServer = require('ws').Server;
-var expressWs = require('express-ws')(server);
+const expressWs = require('express-ws')(server);
 const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
