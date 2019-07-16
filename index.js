@@ -27,13 +27,10 @@ server.use(bodyParser.json());
 
 server.use(function (req, res, next) {
   console.log('middleware');
-//     if (request.body.queryResult){
-//   var q_text = req.body.queryResult.queryText;
-//   req.testing = '';  
-//   if (q_text.includes("what")) {
   req.testing = 'testing';
-//   };
-//     };
+  if ('queryResult' in Objects.keys(requeest.body){
+      request.testing = 'success testing';
+  };
   return next();
 });
  
