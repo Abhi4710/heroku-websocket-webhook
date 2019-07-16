@@ -31,7 +31,7 @@ wss.on('connection', function connection(ws) {
     ws.on('close', () => console.log('Client disconnected'));
 });
 
-app.post("/echo", function(req, res) {
+app.post("/", function(req, res) {
     console.log('echo');
     console.log('Query:' + Object.entries(req.body.queryResult.queryText));
     console.log('Param ' + Object.entries(req.body.queryResult.parameters));
