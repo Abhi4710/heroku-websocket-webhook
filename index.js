@@ -21,48 +21,48 @@ server.use(
 
 server.use(bodyParser.json());
 
-server.post("/", function(req, res) {
-  console.log('Query:' + Object.entries(req.body.queryResult.queryText));
-  console.log('Param ' + Object.entries(req.body.queryResult.parameters));
-  var n = req.body.queryResult.queryText;
+// server.post("/", function(req, res) {
+//   console.log('Query:' + Object.entries(req.body.queryResult.queryText));
+//   console.log('Param ' + Object.entries(req.body.queryResult.parameters));
+//   var n = req.body.queryResult.queryText;
   
-  if (n.includes("what")) {
-//     res = {"query": "?"}
-//     myfunction(res);
-    var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;}
-  else{
-   var speech =
-    req.body.queryResult &&
-    req.body.queryResult.parameters
-    ? "It is turned " + req.body.queryResult.parameters.state : "Seems like some problem. Speak again.";
-  }
+//   if (n.includes("what")) {
+// //     res = {"query": "?"}
+// //     myfunction(res);
+//     var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;}
+//   else{
+//    var speech =
+//     req.body.queryResult &&
+//     req.body.queryResult.parameters
+//     ? "It is turned " + req.body.queryResult.parameters.state : "Seems like some problem. Speak again.";
+//   }
   
-  var req_d = Object.entries(req);
+//   var req_d = Object.entries(req);
   
-  var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: speech
-            }
-          }
-        ]
-      }
-    }
-  };
+//   var speechResponse = {
+//     google: {
+//       expectUserResponse: true,
+//       richResponse: {
+//         items: [
+//           {
+//             simpleResponse: {
+//               textToSpeech: speech
+//             }
+//           }
+//         ]
+//       }
+//     }
+//   };
   
-  return res.json({
-    payload: speechResponse,
-    //data: speechResponse,
-    fulfillmentText: "Sample text response",
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
-});
+//   return res.json({
+//     payload: speechResponse,
+//     //data: speechResponse,
+//     fulfillmentText: "Sample text response",
+//     speech: speech,
+//     displayText: speech,
+//     source: "webhook-echo-sample"
+//   });
+// });
 
 server.use((req, res) => res.sendFile(INDEX) ).listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
