@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 const PORT_WS = 4000;
-const server = express().use((req, res) => res.sendFile(INDEX)).listen(PORT_WS, () => console.log('listening on port 4000'));
+const server = express().listen(PORT_WS, () => console.log('listening on port 4000'));
 const app = express();
 const path = require('path');
 const SocketServer = require('ws').Server;
@@ -71,4 +71,4 @@ app.post("/", function(req, res) {
       source: "webhook-echo-sample"
     });
   });
-app.listen(PORT, () => console.log(`Webhook Listening on ${PORT}`))
+app.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`Webhook Listening on ${PORT}`))
