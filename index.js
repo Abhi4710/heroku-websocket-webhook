@@ -73,7 +73,7 @@ server.post("/echo", function(req, res) {
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 // const wss = new SocketServer({ server });
-const wss = new SocketServer('ws://esp-gas.herokuapp.com')
+const wss = new SocketServer({'ws://esp-gas.herokuapp.com'})
 console.log(wss);
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
