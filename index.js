@@ -3,11 +3,23 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
-const PORT_WH = 4000;
+const PORT_WS = 4000;
 const app = express();
 const path = require('path');
+const SocketServer = require('ws').Server;
 
 const INDEX = path.join(__dirname, 'index.html');
+
+const wss = new SocketServer({ server })
+
+wss.on('connection', function connection(ws) {
+    console.log('Client connected');
+    ws.on('message', function incoming(message) {
+        console.log('received: %s', message);
+        ws.send('ok ' + message);
+    });
+    ws.on('close', () => console.log('Client disconnected'));
+});
 
 app.use(
   bodyParser.urlencoded({
