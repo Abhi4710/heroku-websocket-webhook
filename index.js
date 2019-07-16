@@ -89,7 +89,7 @@ function myfunction(res) {
     client.send(JSON.stringify(res))
       .then(client.on('message', function incoming(message) {
       console.log(message);
-    });
+    }));
   // console.log(client.send('1234'));
   });
 };
