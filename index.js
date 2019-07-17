@@ -35,7 +35,7 @@ server.ws('/', function(ws, req) {
 });
 
 function myfunction(query, resp) {
-    resp = resp;
+    this.resp = resp;
     console.log(resp);
     query = query;
     console.log(query);
