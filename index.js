@@ -39,6 +39,13 @@ server.get('/', function(req, res, next){
  
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));
+  console.log(query + 'start');
+  if(query != '') {
+      console.log(query + 'in query');
+   ws.send('?');
+   query = '';};  
+   console.log(query + 'end');
+    
   ws.on('message', function(msg) {
     ws.send('ok ' + msg);
     console.log(msg);
@@ -46,12 +53,6 @@ server.ws('/', function(ws, req) {
     resp = msg;
   };
    });
-    console.log(query + 'start');
-  if(query != '') {
-      console.log(query + 'in query');
-    ws.send('?');
-    query = '';};  
-    console.log(query + 'end');
 //   setInterval(function(){ ws.send('{"query": "?"}'); }, 3000);
   console.log('socket', req.testing);
 });
