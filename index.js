@@ -67,9 +67,10 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         query = '?';
+        while (resp == '') { console.log('waiting for resp')};
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
         if (resp != '') {
-            var speech = resp;
+            var speech = async function(){};
             resp = '';
         };
     }
@@ -79,6 +80,7 @@ server.post("/echo", function (req, res) {
             req.body.queryResult &&
                 req.body.queryResult.parameters
                 ? "It is turned " + req.body.queryResult.parameters.state : "Seems like some problem. Speak again.";
+        resp = '';
     }
 
     var req_d = Object.entries(req);
