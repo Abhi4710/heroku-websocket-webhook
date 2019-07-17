@@ -42,7 +42,8 @@ function myfunction(query, resp) {
     g_query = query;
     console.log(g_query);
     if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
-    else if (resp == '"state":"ON"' || resp == '"state":"OFF"') { return 'act';}
+    else if (resp == '"astate":"ON"' || resp == '"astate":"OFF"') { return 'aack';}
+    else if (resp == '"qstate":"ON"' || resp == '"qstate":"OFF"') { return 'qack';}
     else {return 'command not recognised'}
 };
 
