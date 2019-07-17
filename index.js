@@ -64,7 +64,6 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         query = '?';
-        sleep(4000);
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
         if (resp != '') {
             var speech = resp;
