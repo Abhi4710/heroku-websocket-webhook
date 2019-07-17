@@ -42,13 +42,13 @@ server.ws('/', function(ws, req) {
   ws.on('message', function(msg) {
     ws.send('ok ' + msg);
     console.log(msg);
+  if (msg != '"heartbeat":"keepalive"') {
     resp = msg;
-   if(query != '') {
+  };
+   });
+  if(query != '') {
     ws.send('?');
-    query = '';
-   }
-   
-  });
+    query = '';};  
 //   setInterval(function(){ ws.send('{"query": "?"}'); }, 3000);
   console.log('socket', req.testing);
 });
