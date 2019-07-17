@@ -30,13 +30,15 @@ server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
     ws.send('ok ' + msg);
-      myfunction(){}
+      myfunction('...', msg);
    });
 });
 
-function myfunction() {
-    resp = "";
-    query = "";
+function myfunction(query, resp) {
+    resp = resp;
+    console.log(resp);
+    query = query;
+    console.log(query);
 };
 
 server.post("/echo", function (req, res) {
@@ -45,13 +47,13 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         
-        myfunction(){}
+        myfunction("?", '...')
 
         var speech = 'Please wait checking device - add variable here'
 
     }
     else {
-          myfunction(){query = 'CMD';}
+          myfunction('CMD', '...')
         
         var speech =
             req.body.queryResult &&
