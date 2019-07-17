@@ -42,7 +42,7 @@ server.ws('/', function(ws, req) {
     console.log(msg);
     resp = msg;
   });
-  setInterval(function(){ ws.send('what'); }, 3000);
+//   setInterval(function(){ ws.send('{"query": "?"}'); }, 3000);
   console.log('socket', req.testing);
 });
 
