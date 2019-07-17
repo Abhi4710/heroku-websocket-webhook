@@ -71,7 +71,7 @@ server.post("/echo", function (req, res) {
 //                            resp = resp;};
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
         if (resp != '') {
-            var speech = async function(){};
+            var speech = resp;
             resp = '';
         };
     }
