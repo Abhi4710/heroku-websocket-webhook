@@ -29,8 +29,7 @@ server.use(bodyParser.json());
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
-    ws.send('ok ' + msg);
-      myfunction('...', msg);
+    ws.send(myfunction('...', msg));
    });
 });
 
@@ -39,6 +38,8 @@ function myfunction(query, resp) {
     console.log(resp);
     query = query;
     console.log(query);
+    
+    if (resp == '"heartbeat":"keepalive"') {return 'server: ok'}
 };
 
 server.post("/echo", function (req, res) {
