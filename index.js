@@ -32,6 +32,8 @@ server.ws('/', function(ws, req) {
     ws.send(myfunction('...', msg));
       console.log('g_resp' + g_resp);
    });
+    
+    setInterval(function(){if (g_query == '?') {ws.send("?")}, 1000}
 });
 
 function myfunction(query, resp) {
@@ -50,7 +52,6 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         myfunction("?", '...')
-
         var speech = 'Please wait checking device - add variable here'
 
     }
