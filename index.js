@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const expressWs = require('express-ws')(server);
 // const SocketServer = require('ws').Server;
 var resp = '';
-var query = '';
+var query = '?';
 const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
@@ -38,22 +38,13 @@ server.get('/', function(req, res, next){
 });
  
 server.ws('/', function(ws, req) {
-  ws.on('connect', () => console.log('client connected'));
-  console.log(query + 'start');
-  if(query != '') {
-      console.log(query + 'in query');
-   ws.send('?');
-   query = '';};  
-   console.log(query + 'end');
-    
+  ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
     ws.send('ok ' + msg);
     console.log(msg);
-  if (msg != '"heartbeat":"keepalive"') {
     resp = msg;
-  };
    });
-//   setInterval(function(){ ws.send('{"query": "?"}'); }, 3000);
+  setInterval(function(){ ws.send(query); }, 3000);
   console.log('socket', req.testing);
 });
 
@@ -67,8 +58,6 @@ function myfunction(resp) {
 server.post("/echo", function (req, res) {
     console.log('echo');
     console.log(req.body.queryResult);
-    // console.log('Query:' + Object.entries(req.body.queryResult.queryText));
-    // console.log('Param ' + Object.entries(req.body.queryResult.parameters));
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         query = '?';
@@ -111,12 +100,3 @@ server.post("/echo", function (req, res) {
     });
 });
 server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`webhook Listening on ${PORT}`))
-// const wss = new SocketServer({ server })
-
-// wss.on('connection', function connection(ws) {
-//     console.log('Client connected');
-//     ws.on('message', function incoming(message) {
-//         console.log('received: %s', message)
-//     });
-//     ws.on('close', () => console.log('Client disconnected'));
-// });
