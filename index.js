@@ -71,6 +71,7 @@ server.post("/echo", function (req, res) {
         };
     }
     else {
+        query = 'cmd';
         var speech =
             req.body.queryResult &&
                 req.body.queryResult.parameters
