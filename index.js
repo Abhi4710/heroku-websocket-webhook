@@ -38,7 +38,7 @@ server.ws('/', function(ws, req) {
 });
 
 function myfunction(query, resp) {
-    g_resp = resp;
+    if (resp != '...'){g_resp = resp;}
     console.log(g_resp);
     g_query = query;
     console.log(g_query);
