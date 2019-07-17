@@ -6,8 +6,13 @@ const server = express();
 const bodyParser = require("body-parser");
 const expressWs = require('express-ws')(server);
 
-var resp = '';
 var query = '';
+var resp = '';
+
+var location = "";
+var state = "";
+var device = "";
+
 
 const path = require('path');
 const INDEX = path.join(__dirname, 'index.html');
@@ -20,45 +25,18 @@ server.use(
 
 server.use(bodyParser.json());
 
-
-server.use(function (req, res, next) {
-  console.log('middleware');
-  req.testing = 'testing';
-  console.log('next function');
-  return next();
-});
- 
-server.get('/', function(req, res, next){
-  console.log('get route', req.testing);
-  res.end();
-});
  
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
     ws.send('ok ' + msg);
-//     console.log(msg);
-//       if (msg != '"heartbeat":"keepalive"') {
-//         resp = msg;
-//       }
+      myfunction(){}
    });
-  setInterval(async function(){ if (query != '') {ws.send(query);
-                                            await ws.on('message', function(msg) {
-                                                console.log(msg);
-                                                if (msg != '"heartbeat":"keepalive"') {
-                                                    resp = msg;}
-                                            });
-                                            query = '';
-                                                 }
-                        else {console.log('NO QUERY');}}, 1000);
-  console.log('socket', req.testing);
 });
 
-function myfunction(resp) {
-    wsInstance.getWss().clients.forEach((client) => {
-        client.send(JSON.stringify(qtext));
-        // console.log(client.send('1234'));
-    });
+function myfunction() {
+    resp = "";
+    query = "";
 };
 
 server.post("/echo", function (req, res) {
@@ -66,30 +44,22 @@ server.post("/echo", function (req, res) {
     console.log(req.body.queryResult);
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
-        query = '?';
-        var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
-        resp = '';
-//         if (resp != '') {
-//             var speech = resp;
-//             resp = '';
-//         };
+        
+        myfunction(){}
+
+        var speech = 'Please wait checking device - add variable here'
+
     }
     else {
-        query = 'CMD';
+          myfunction(){query = 'CMD';}
+        
         var speech =
             req.body.queryResult &&
                 req.body.queryResult.parameters
                 ? "It is turned " + req.body.queryResult.parameters.state : "Seems like some problem. Speak again.";
-        resp = '';
     }
 
-    var req_d = Object.entries(req);
 
-    setTimeout(function(){
-        if (resp != '') {
-          var speech = resp;
-           resp = '';
-        };
     var speechResponse = {
         google: {
             expectUserResponse: true,
@@ -107,11 +77,11 @@ server.post("/echo", function (req, res) {
 
     return res.json({
         payload: speechResponse,
-        //data: speechResponse,
+        data: speechResponse,
         fulfillmentText: "Sample text response",
         speech: speech,
         displayText: speech,
         source: "webhook-echo-sample"
-    });}, 1000);
+    });
 });
 server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`webhook Listening on ${PORT}`))
