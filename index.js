@@ -40,7 +40,7 @@ function myfunction(query, resp) {
     g_query = query;
     console.log(g_query);
     if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
-    else if (resp == '"state": "ON"' || resp == '"state": "OFF"') { return 'act';}
+    else if (resp == '"state":"ON"' || resp == '"state":"OFF"') { return 'act';}
     else {return 'command not recognised'}
 };
 
