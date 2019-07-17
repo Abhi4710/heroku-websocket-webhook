@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 const expressWs = require('express-ws')(server);
 // const SocketServer = require('ws').Server;
 var resp = '';
+var query = '';
 const path = require('path');
 
 const INDEX = path.join(__dirname, 'index.html');
@@ -42,6 +43,11 @@ server.ws('/', function(ws, req) {
     ws.send('ok ' + msg);
     console.log(msg);
     resp = msg;
+   if(query != '') {
+    ws.send('{"query": "?"}');
+    query = '';
+   }
+   
   });
 //   setInterval(function(){ ws.send('{"query": "?"}'); }, 3000);
   console.log('socket', req.testing);
@@ -61,6 +67,7 @@ server.post("/echo", function (req, res) {
     // console.log('Param ' + Object.entries(req.body.queryResult.parameters));
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
+        query = '?';
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
         if (resp != '') {
             var speech = resp;
