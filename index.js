@@ -30,8 +30,8 @@ server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
     ws.send(myfunction('...', msg));
+    console.log('resp:' + resp)
    });
-   console.log('resp:' + resp)
 });
 
 function myfunction(query, resp) {
