@@ -33,7 +33,7 @@ server.ws('/', function(ws, req) {
       console.log('g_resp' + g_resp);
    });
     
-    setInterval(function(){if (g_query == '?') {ws.send("?")}, 1000}
+   setInterval(function(){if (g_query == '?') {ws.send("?");}}, 1000);
 });
 
 function myfunction(query, resp) {
