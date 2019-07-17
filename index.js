@@ -31,7 +31,8 @@ server.ws('/', function(ws, req) {
   ws.on('message', function(msg) {
       resp = msg;
     ws.send(myfunction('...', msg));
-    console.log(await myfunction2())
+      var val = await myfunction2();
+    console.log(val)
    });
 });
 
