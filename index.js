@@ -112,6 +112,6 @@ server.post("/echo", function (req, res) {
         speech: speech,
         displayText: speech,
         source: "webhook-echo-sample"
-    });}, 3000);
+    });}, 1000);
 });
 server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`webhook Listening on ${PORT}`))
