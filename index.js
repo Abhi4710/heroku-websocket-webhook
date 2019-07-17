@@ -6,8 +6,8 @@ const server = express();
 const bodyParser = require("body-parser");
 const expressWs = require('express-ws')(server);
 
-var query = '';
-var resp = '';
+var g_query = '';
+var g_resp = '';
 
 var location = "";
 var state = "";
@@ -29,17 +29,16 @@ server.use(bodyParser.json());
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
-      resp = 'ok';
     ws.send(myfunction('...', msg));
-    console.log(resp);
+      console.log('g_resp' + g_resp);
    });
 });
 
 function myfunction(query, resp) {
-    resp = resp;
-    console.log(resp);
-    query = query;
-    console.log(query);
+    g_resp = resp;
+    console.log(g_resp);
+    g_query = query;
+    console.log(g_query);
     if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
     else if (resp == '"state": "ON"' || resp == '"state": "OFF"') { return 'act';}
     else {return 'command not recognised'}
