@@ -50,7 +50,7 @@ server.ws('/', function(ws, req) {
                                             });
                                             query = '';
                                                  }
-                        else {console.log('NO QUERY');}}, 3000);
+                        else {console.log('NO QUERY');}}, 1000);
   console.log('socket', req.testing);
 });
 
@@ -67,13 +67,12 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         query = '?';
-//         while (resp == '') { console.log('waiting for resp');
-//                            resp = resp;};
         var speech = 'Please wait checking device - ' + req.body.queryResult.parameters.device;
-        if (resp != '') {
-            var speech = resp;
-            resp = '';
-        };
+        resp = '';
+//         if (resp != '') {
+//             var speech = resp;
+//             resp = '';
+//         };
     }
     else {
         query = 'CMD';
@@ -86,6 +85,11 @@ server.post("/echo", function (req, res) {
 
     var req_d = Object.entries(req);
 
+    setTimeout(function(){
+        if (resp != '') {
+          var speech = resp;
+           resp = '';
+        };
     var speechResponse = {
         google: {
             expectUserResponse: true,
@@ -108,6 +112,6 @@ server.post("/echo", function (req, res) {
         speech: speech,
         displayText: speech,
         source: "webhook-echo-sample"
-    });
+    });}, 3000);
 });
 server.use((req, res) => res.sendFile(INDEX)).listen(PORT, () => console.log(`webhook Listening on ${PORT}`))
