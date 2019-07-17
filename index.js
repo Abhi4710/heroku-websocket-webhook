@@ -54,7 +54,7 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         myfunction("?", '...')
-        var speech = 'It is currently ' + g_query;
+        var speech = 'It is currently ' + g_resp;
 
     }
     else {
