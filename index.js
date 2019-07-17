@@ -46,7 +46,8 @@ server.ws('/', function(ws, req) {
         resp = msg;
       }
    });
-  setInterval(function(){ if (query != '') {ws.send(query);}
+  setInterval(function(){ if (query != '') {ws.send(query);
+                                           query = '';}
                         else {console.log('NO QUERY');}}, 3000);
   console.log('socket', req.testing);
 });
