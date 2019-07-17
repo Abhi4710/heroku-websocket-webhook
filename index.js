@@ -40,8 +40,8 @@ function myfunction(query, resp) {
     query = query;
     console.log(query);
     
-    if (resp == '"heartbeat":"keepalive"') {return 'server: ok';}
-    elseif (resp == '"state": "ON"' || resp == '"state": "OFF"'){ return 'act';}
+    if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
+    else if (resp == '"state": "ON"' || resp == '"state": "OFF"') { return 'act';}
     else {return 'command not recognised'}
 };
 
