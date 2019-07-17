@@ -33,7 +33,8 @@ server.ws('/', function(ws, req) {
       console.log('g_resp' + g_resp);
    });
     
-   setInterval(function(){if (g_query == '?') {ws.send("?");}}, 1000);
+   setInterval(function(){if (g_query == '?') {ws.send("?");}
+                         else if (g_query.includes('CMD')) {ws.send(g_query);}}, 1000);
 });
 
 function myfunction(query, resp) {
@@ -57,7 +58,7 @@ server.post("/echo", function (req, res) {
 
     }
     else {
-          myfunction('CMD', '...')
+          myfunction('CMD:' + req.body.queryResult.parameters.state, '...')
         
         var speech =
             req.body.queryResult &&
