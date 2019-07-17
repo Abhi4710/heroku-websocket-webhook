@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const expressWs = require('express-ws')(server);
 
 var query = '';
-// var resp = '';
+var resp = '';
 
 var location = "";
 var state = "";
