@@ -31,6 +31,7 @@ server.ws('/', function(ws, req) {
   ws.on('message', function(msg) {
     ws.send(myfunction('...', msg));
    });
+   console.log('resp:' + resp)
 });
 
 function myfunction(query, resp) {
@@ -40,6 +41,8 @@ function myfunction(query, resp) {
     console.log(query);
     
     if (resp == '"heartbeat":"keepalive"') {return 'server: ok'}
+    elseif (resp == '"state": "ON"' || resp == '"state": "OFF"'){ return 'act' }
+    else {return 'command not recognised'}
 };
 
 server.post("/echo", function (req, res) {
@@ -47,7 +50,6 @@ server.post("/echo", function (req, res) {
     console.log(req.body.queryResult);
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
-        
         myfunction("?", '...')
 
         var speech = 'Please wait checking device - add variable here'
