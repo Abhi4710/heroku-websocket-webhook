@@ -39,6 +39,7 @@ server.get('/', function(req, res, next){
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));
   ws.on('message', function(msg) {
+    ws.send('ok ' + msg);
     console.log(msg);
     resp = msg;
   });
