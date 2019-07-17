@@ -44,7 +44,7 @@ server.ws('/', function(ws, req) {
     console.log(msg);
     resp = msg;
    if(query != '') {
-    ws.send('{"query": "?"}');
+    ws.send('?');
     query = '';
    }
    
