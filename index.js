@@ -29,13 +29,18 @@ server.use(bodyParser.json());
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
+      resp = msg;
     ws.send(myfunction('...', msg));
-    console.log('resp:' + resp)
+    console.log(await myfunction2())
    });
 });
 
+async function myfunction2() {
+    if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
+}
+
 function myfunction(query, resp) {
-    var resp = resp;
+    resp = resp;
     console.log(resp);
     query = query;
     console.log(query);
