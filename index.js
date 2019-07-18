@@ -59,7 +59,7 @@ server.post("/webhook", function (req, res) {
         myfunction("?", null)
         if (g_resp != ''){
         var speech = 'It is currently ' + g_resp.substring(9);}
-        else{var speech = 'Sorry! I am unable to reach your device.'}
+        else{var speech = 'Sorry! I am unable to reach your device. Please check your device connectivity and try again.'}
 
     }
     else {
