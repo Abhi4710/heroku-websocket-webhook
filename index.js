@@ -34,8 +34,8 @@ server.ws('/', function(ws, req) {
    });
     
    setInterval(function(){if (g_query == '?') {ws.send("?");}
-                         else if (g_query.includes('CMD')) {ws.send(g_query);}}
-          g_query = null;, 1000);
+                         else if (g_query.includes('CMD')) {ws.send(g_query);}
+          g_query = null;}, 1000);
 });
 
 function myfunction(query, resp) {
