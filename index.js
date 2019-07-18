@@ -34,6 +34,7 @@ server.ws('/', function(ws, req) {
     ws.send(myfunction(null, msg));
       console.log('g_resp: ' + g_resp);
    });
+  ws.on('close', () => console.log('client Disconnected'); ws_client.pop(ws));
     
    setInterval(function(){if (g_query == '?') {ws.send("?"); g_query = null;}
                          else if (g_query == 'CMD:on' || g_query == 'CMD:off') {ws.send(g_query); g_query = null;}}, 1000);
@@ -70,7 +71,7 @@ server.post("/webhook", function (req, res) {
         
         var speech =
             req.body.queryResult &&
-                req.body.queryResult.parameters
+                req.body.queryResult.parameters && ws_client.length == 0 && g_resp != '';
                 ? "It is turned " + req.body.queryResult.parameters.state : "Seems like some problem. Speak again.";
     }
 
