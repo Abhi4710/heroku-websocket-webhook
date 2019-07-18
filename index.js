@@ -34,7 +34,7 @@ server.ws('/', function(ws, req) {
     ws.send(myfunction(null, msg));
       console.log('g_resp: ' + g_resp);
    });
-  ws.on('close', () => console.log('client Disconnected'); ws_client.pop(ws));
+  ws.on('close', () => {console.log('client Disconnected'); ws_client.pop(ws);});
     
    setInterval(function(){if (g_query == '?') {ws.send("?"); g_query = null;}
                          else if (g_query == 'CMD:on' || g_query == 'CMD:off') {ws.send(g_query); g_query = null;}}, 1000);
