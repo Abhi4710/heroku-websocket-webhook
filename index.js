@@ -61,7 +61,7 @@ server.post("/echo", function (req, res) {
 
     }
     else {
-        myfunction('CMD:' + req.body.queryResult.parameters.state, '...')
+        myfunction('CMD:' + req.body.queryResult.parameters.state, null)
         
         var speech =
             req.body.queryResult &&
