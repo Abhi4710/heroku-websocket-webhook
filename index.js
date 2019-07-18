@@ -45,7 +45,8 @@ function myfunction(query, resp) {
     if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
     else if (resp == '"astate":"ON"' || resp == '"astate":"OFF"') { return 'aack';}
     else if (resp == '"qstate":"ON"' || resp == '"qstate":"OFF"') { return 'qack';}
-    else {return 'command not recognised'}
+    else if (resp == '"cstate":"ON"' || resp == '"cstate":"OFF"') { return 'cack';}
+    else {return 'server: command not recognised'}
 };
 
 server.post("/echo", function (req, res) {
