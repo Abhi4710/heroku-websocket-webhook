@@ -57,8 +57,8 @@ server.post("/webhook", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         myfunction("?", null)
-        if (g_resp.substring(9) != ''){
-        var speech = 'It is currently ' + ;}
+        if (g_resp != ''){
+        var speech = 'It is currently ' + g_resp.substring(9);}
         else{var speech = 'Sorry! I am unable to reach your device.'}
 
     }
