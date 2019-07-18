@@ -71,7 +71,7 @@ server.post("/webhook", function (req, res) {
         
         var speech =
             req.body.queryResult &&
-                req.body.queryResult.parameters && ws_client.length == 0 && g_resp != '';
+                req.body.queryResult.parameters && ws_client.length == 0 && g_resp != ''
                 ? "It is turned " + req.body.queryResult.parameters.state : "Seems like some problem. Speak again.";
     }
 
