@@ -29,8 +29,8 @@ server.use(bodyParser.json());
 server.ws('/', function(ws, req) {
   ws.on('connect', () => console.log('client connected'));   
   ws.on('message', function(msg) {
-    ws.send(myfunction('...', msg));
-      console.log('g_resp' + g_resp);
+    ws.send(myfunction(null, msg));
+      console.log('g_resp: ' + g_resp);
    });
     
    setInterval(function(){if (g_query == '?') {ws.send("?");}
@@ -38,10 +38,10 @@ server.ws('/', function(ws, req) {
 });
 
 function myfunction(query, resp) {
-    if (resp != '...'){g_resp = resp;}
-    console.log(g_resp);
-    g_query = query;
-    console.log(g_query);
+    if (resp != null){g_resp = resp;}
+    console.log('myfunction_resp: ' + g_resp);
+    if (query != null) {g_query = query;}
+    console.log('myfunction_query: ' + g_query);
     if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
     else if (resp == '"astate":"ON"' || resp == '"astate":"OFF"') { return 'aack';}
     else if (resp == '"qstate":"ON"' || resp == '"qstate":"OFF"') { return 'qack';}
@@ -50,15 +50,17 @@ function myfunction(query, resp) {
 
 server.post("/echo", function (req, res) {
     console.log('echo');
-    console.log(req.body.queryResult);
+    location = req.body.queryResult.parameters.location;
+    device = req.body.queryResult.parameters.location;
+    state = req.body.queryResult.parameters.state;
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
-        myfunction("?", '...')
+        myfunction("?", null)
         var speech = 'It is currently ' + g_resp;
 
     }
     else {
-          myfunction('CMD:' + req.body.queryResult.parameters.state, '...')
+        myfunction('CMD:' + req.body.queryResult.parameters.state, '...')
         
         var speech =
             req.body.queryResult &&
