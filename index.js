@@ -34,7 +34,7 @@ server.ws('/', function(ws, req) {
    });
     
    setInterval(function(){if (g_query == '?') {ws.send("?"); g_query = null;}
-                         else if (g_query == 'CMD:on' || g_query == 'CMD:off')) {ws.send(g_query); g_query = null;}}, 1000);
+                         else if (g_query == 'CMD:on' || g_query == 'CMD:off') {ws.send(g_query); g_query = null;}}, 1000);
 });
 
 function myfunction(query, resp) {
