@@ -67,7 +67,7 @@ server.post("/webhook", function (req, res) {
 
         var speech =
             ws_client.length != 0 && g_resp != ''
-                ? "It is turned " + g_resp.substring(9) : "Sorry! I am unable to reach your device. Please check your device connectivity and try again.";
+                ? "It is turned " + req.body.queryResult.parameters.state : "Sorry! I am unable to reach your device. Please check your device connectivity and try again.";
     }
 
 
