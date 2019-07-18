@@ -49,7 +49,7 @@ function myfunction(query, resp) {
     else {return 'server: command not recognised'}
 };
 
-server.post("/echo", function (req, res) {
+server.post("/webhook", function (req, res) {
     console.log('echo');
     location = req.body.queryResult.parameters.location;
     device = req.body.queryResult.parameters.location;
@@ -57,7 +57,9 @@ server.post("/echo", function (req, res) {
     var q_text = req.body.queryResult.queryText;
     if (q_text.includes("what")) {
         myfunction("?", null)
-        var speech = 'It is currently ' + g_resp.substring(9);
+        if (g_resp.substring(9) != ''){
+        var speech = 'It is currently ' + ;}
+        else{var speech = 'Sorry! I am unable to reach your device.'}
 
     }
     else {
