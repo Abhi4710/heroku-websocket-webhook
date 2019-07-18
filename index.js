@@ -33,7 +33,7 @@ server.ws('/', function(ws, req) {
       console.log('g_resp: ' + g_resp);
    });
     
-   setInterval(function(){if (g_query == '?') {ws.send("?");}}
+   setInterval(function(){if (g_query == '?') {ws.send("?");}
                          else if (g_query.includes('CMD')) {ws.send(g_query);}}
           g_query = null;, 1000);
 });
