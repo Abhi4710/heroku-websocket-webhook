@@ -12,6 +12,7 @@ var g_resp = '';
 var location = "";
 var state = "";
 var device = "";
+var ws_client = [];
 
 
 const path = require('path');
@@ -27,7 +28,8 @@ server.use(bodyParser.json());
 
  
 server.ws('/', function(ws, req) {
-  ws.on('connect', () => console.log('client connected'));   
+  ws.on('connect', () => console.log('client connected'));
+  ws_client.push(ws);
   ws.on('message', function(msg) {
     ws.send(myfunction(null, msg));
       console.log('g_resp: ' + g_resp);
@@ -42,6 +44,7 @@ function myfunction(query, resp) {
     console.log('myfunction_resp: ' + g_resp);
     if (query != null) {g_query = query;}
     console.log('myfunction_query: ' + g_query);
+    console.log(ws_client);
     if (resp == '"heartbeat":"keepalive"') { return 'server: ok';}
     else if (resp == '"astate":"ON"' || resp == '"astate":"OFF"') { return 'aack';}
     else if (resp == '"qstate":"ON"' || resp == '"qstate":"OFF"') { return 'qack';}
