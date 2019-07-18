@@ -33,9 +33,9 @@ server.ws('/', function(ws, req) {
       console.log('g_resp: ' + g_resp);
    });
     
-   setInterval(function(){if (g_query == '?') {ws.send("?"); g_query = null;}
-                          g_query = null;
-                         else if (g_query.includes('CMD')) {ws.send(g_query); g_query = null;}}, 1000);
+   setInterval(function(){if (g_query == '?') {ws.send("?");}}
+                         else if (g_query.includes('CMD')) {ws.send(g_query);}}
+          g_query = null;, 1000);
 });
 
 function myfunction(query, resp) {
